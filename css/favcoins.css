@@ -1,0 +1,13 @@
+.coins-selected {
+
+  display: flex;
+  align-items: top;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 2em;
+}
+.title-main-favorite {
+  font-size: 40px;
+  width: 100%;
+}
