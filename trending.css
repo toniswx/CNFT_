@@ -1,0 +1,201 @@
+.trending-container {
+  padding-top: 15em;
+  font-family: "Inter", sans-serif;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.trending-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+}
+.title-main-trending {
+  color: rgb(0, 0, 0);
+  display: flex;
+  width: 100%;
+  font-size: 3vw;
+  align-items: center;
+  font-weight: bold;
+}
+
+.coin img {
+  padding-right: 1em;
+}
+.coin i{
+  outline: none;
+  font-size: 1.4rem;
+  padding-left: .4em;
+  padding-right: .4em;
+  color: rgb(0, 0, 0);
+  outline: none;
+  border-radius: 20px;
+}
+.coin i:hover{
+  color: rgb(255, 0, 0);
+}
+.coins-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+  margin-bottom: 2em;
+}
+.coin span {
+  font-size: 1.2rem;
+}
+.coin {
+  transition:  all .15s ease;
+ padding: .2em;
+  display: flex;
+  color: var(--main-color);
+  justify-content: space-between;
+  width: 95%;
+  padding-inline: 30px;
+  border-bottom: 1px solid rgb(87, 86, 86);
+}
+.coin-selected-filled{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.coin:hover{
+  background-color:aliceblue;
+}
+.coin p {
+  width: 40px;
+  font-size: 1rem;
+  padding-left: .5em;
+  cursor: pointer;
+
+}
+.coin img{
+  width: 30px;
+  height: auto;
+}
+.coin p:nth-child(2){
+  font-size: .9rem;
+  font-weight: 300;
+  color: rgb(0, 0, 0);
+}
+.coin div {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  
+}
+
+.coin-low {
+  color: rgb(189, 15, 39);
+}
+.coin-high {
+  color: rgb(37, 124, 47);
+}
+.img-container {
+  width: 40%;
+}
+.teste-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.fixed-container{
+  height: 4em;
+  top: 140px;
+  background-color: white;
+  position: fixed;
+  
+}
+.fixed-container:hover{
+  background-color: white;
+}
+.coins-teste {
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+}
+
+.popup-container{
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 100px;
+  top: 140px;
+  font-family: "Inter", sans-serif;
+
+}
+.popup-added{
+  border-left: 5px solid rgba(21, 253, 0, 0.815);
+  box-shadow: 0px 2px 20px -2px rgba(0, 0, 0, 0.219);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+  padding: 12px;
+  width: 100%;
+  color: rgb(0, 0, 0);
+  animation: fadeIN 5s ;
+  background-color: white;
+  opacity: 0;
+  
+}
+.popup-have{
+  
+  border-left: 5px solid rgba(214, 14, 14, 0.815) ;
+  box-shadow: 0px 2px 20px -2px rgba(0, 0, 0, 0.219);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+  padding: 12px;
+  width: 100%;
+  color: rgb(0, 0, 0);
+  animation: fadeIN 5s ;
+  background-color: white;
+  opacity: 0;
+}
+.fa-check{
+  background-color:rgba(21, 253, 0, 0.815) ;
+  padding: 15px;
+  margin-right: 1em;
+  border-radius: 1000px;
+  color: white;
+}
+.fa-circle-xmark{
+    background-color:rgba(214, 14, 14, 0.815) ;
+  padding: 15px;
+  margin-right: 1em;
+  border-radius: 1000px;
+  color: white;
+}
+@keyframes fadeIN{
+
+ 0%{
+  opacity: 0;
+ }
+ 20%{
+  opacity: 1;
+ }
+ 90%{
+
+    opacity: 1;
+ }
+ 100%{
+  opacity: 0;
+ }
+
+
+}
