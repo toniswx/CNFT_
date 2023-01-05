@@ -14,8 +14,8 @@ const app = {
     const page = document.body.id;
     switch (page) {
       case "page-1":
-        app.trendCoins();
         app.searchCoin();
+        app.pagination()
         break;
       case "page-2":
         app.loadFavorites();
@@ -29,15 +29,56 @@ const app = {
     }
   },
   //get trending coins
-  trendCoins: () => {
-    const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=gecko_desc&per_page=100&page=1&sparkline=false`;
+  coins: (page) => {
+    const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=gecko_desc&per_page=100&page=${page}&sparkline=false`;
     let req = new Request(url);
     fetch(req)
       .then((resp) => resp.json())
       .then((data) => app.basicData(data))
       .catch((err) => console.log(err));
   },
+  pagination:()=>{
+
+  // setting default page when page loads
+  let page = 1
+  app.coins(page)
+
+ //when clicked,goes to the next page
+
+ const get_next_btn = document.querySelector(".ntx-btn")
+ get_next_btn.addEventListener("click",()=>{
+  event.preventDefault()
+   page = page + 1
+   app.coins(page)
+
+ })
+
+
+ // when clicked,goes to the previus page
+
+ const get_prev_btn = document.querySelector(".ntx-previus")
+ get_prev_btn.addEventListener("click",()=>{
+  event.preventDefault()
+
+
+  if(page <= 1){
+    console.log(page)
+    return
+  }
+  else{
+    console.log(page)
+    page = page - 1
+    app.coins(page)
+  }
+ })
+
+
+
+
+  }
+  ,
   basicData: (data) => {
+    console.log("i was here")
     app.coins_contructor(data, ".coins-items");
     app.addNewFavoriteItem(data);
   },
@@ -92,7 +133,6 @@ const app = {
     };
   },
   queryCoin_constructor: (search_bar_coin_name) => {
-    console.log(search_bar_coin_name);
     
     const html_container = document.querySelector(".coin-2");
     html_container.innerHTML = ""
@@ -136,6 +176,7 @@ const app = {
   
   coins_contructor: (coins, container) => {
     const html_container = document.querySelector(`${container}`);
+    html_container.innerHTML = ""
     coins.forEach((item) => {
       html_container.innerHTML += `
       <div class="coin" data-id=${item.id}>
