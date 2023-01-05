@@ -15,7 +15,7 @@ const app = {
     switch (page) {
       case "page-1":
         app.searchCoin();
-        app.pagination()
+        app.pagination();
         break;
       case "page-2":
         app.loadFavorites();
@@ -24,8 +24,7 @@ const app = {
       case "page-3":
         app.getDetailedCoin();
         app.searchCoin();
-        break
-     
+        break;
     }
   },
   //get trending coins
@@ -37,92 +36,97 @@ const app = {
       .then((data) => app.basicData(data))
       .catch((err) => console.log(err));
   },
-  pagination:()=>{
+  pagination: () => {
+    // setting default page when page loads
+    let page = 1;
+    app.coins(page);
 
-  // setting default page when page loads
-  let page = 1
-  app.coins(page)
+    //when clicked,goes to the next page
 
- //when clicked,goes to the next page
+    const get_next_btn = document.querySelector(".ntx-btn");
+    get_next_btn.addEventListener("click", () => {
+      page = page + 1;
+      app.coins(page);
+    });
 
- const get_next_btn = document.querySelector(".ntx-btn")
- get_next_btn.addEventListener("click",()=>{
-  event.preventDefault()
-   page = page + 1
-   app.coins(page)
+    // when clicked,goes to the previus page
 
- })
-
-
- // when clicked,goes to the previus page
-
- const get_prev_btn = document.querySelector(".ntx-previus")
- get_prev_btn.addEventListener("click",()=>{
-  event.preventDefault()
-
-
-  if(page <= 1){
-    console.log(page)
-    return
-  }
-  else{
-    console.log(page)
-    page = page - 1
-    app.coins(page)
-  }
- })
-
-
-
-
-  }
-  ,
+    const get_prev_btn = document.querySelector(".ntx-previus");
+    get_prev_btn.addEventListener("click", () => {
+      if (page <= 1) {
+        console.log(page);
+        return;
+      } else {
+        console.log(page);
+        page = page - 1;
+        app.coins(page);
+      }
+    });
+  },
   basicData: (data) => {
-    console.log("i was here")
+    console.log("i was here");
     app.coins_contructor(data, ".coins-items");
     app.addNewFavoriteItem(data);
   },
   searchCoin: () => {
     const getQueryCoin = () => {
       const search_bar = document.querySelector(".search-bar-el");
-      const searchButton = document.querySelector(".search-btn")
-      const close_btn = document.querySelector(".fa-rectangle-xmark")
-      const coins_query_container = document.querySelector(".search-container")
-      const coins_query_container2 = document.querySelector(".search-container2")
+      const searchButton = document.querySelector(".search-btn");
+      const close_btn = document.querySelector(".fa-rectangle-xmark");
+      const coins_query_container = document.querySelector(".search-container");
+      const coins_query_container2 =
+        document.querySelector(".search-container2");
 
+      const letters = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+      ];
 
-      const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-  
-      
-     
-
-      searchButton.addEventListener("click", () => {    
-         coins_query_container.classList.add("show_container")
-         coins_query_container2.classList.add("show_container")   
+      searchButton.addEventListener("click", () => {
+        coins_query_container.classList.add("show_container");
+        coins_query_container2.classList.add("show_container");
       });
-     searchButton.addEventListener("click",()=>{
-         
-      letters.forEach(letter => {
-        if(search_bar.value.includes(letter) === false){
-          return
-        }
-        else{
-          fetchQueryCoin(search_bar.value)
-        }
-
-
+      searchButton.addEventListener("click", () => {
+        letters.forEach((letter) => {
+          if (search_bar.value.includes(letter) === false) {
+            return;
+          } else {
+            fetchQueryCoin(search_bar.value);
+          }
+        });
       });
-      
-     })
-     
-     close_btn.addEventListener("click",()=>{
-      coins_query_container.classList.remove("show_container")
-      coins_query_container2.classList.remove("show_container")      
-    })
-      
+
+      close_btn.addEventListener("click", () => {
+        coins_query_container.classList.remove("show_container");
+        coins_query_container2.classList.remove("show_container");
+      });
     };
     getQueryCoin();
-    
+
     const fetchQueryCoin = (coin_name) => {
       const url = `https://api.coingecko.com/api/v3/search?query=${coin_name}`;
       let req = new Request(url);
@@ -133,10 +137,8 @@ const app = {
     };
   },
   queryCoin_constructor: (search_bar_coin_name) => {
-    
     const html_container = document.querySelector(".coin-2");
-    html_container.innerHTML = ""
-
+    html_container.innerHTML = "";
 
     search_bar_coin_name.forEach((coin) => {
       html_container.innerHTML += `
@@ -151,38 +153,38 @@ const app = {
             </div>
         `;
     });
-    
-  app.get_query_coin_page()
 
+    app.get_query_coin_page();
   },
-  get_query_coin_page:()=>{
-     const getQueryCoins = document.querySelectorAll(".querycoin")
-     const arrFromCoins = Array.from(getQueryCoins)
-     arrFromCoins.forEach(coin=>{
-      coin.addEventListener("click",()=>{
+  get_query_coin_page: () => {
+    const getQueryCoins = document.querySelectorAll(".querycoin");
+    const arrFromCoins = Array.from(getQueryCoins);
+    arrFromCoins.forEach((coin) => {
+      coin.addEventListener("click", () => {
         localStorage.setItem("selectedCoin", coin.dataset.id);
-        window.location = "detailedcoin.html" })
-     })
+        window.location = "detailedcoin.html";
+      });
+    });
   },
-  get_query_favorite_page:()=>{
-    const getQueryCoins = document.querySelectorAll(".coin-name-favorite")
-    const arrFromCoins = Array.from(getQueryCoins)
-    arrFromCoins.forEach(coin=>{
-     coin.addEventListener("click",()=>{
-       localStorage.setItem("selectedCoin", coin.dataset.id);
-       window.location = "detailedcoin.html" })
-    })
- },
-  
+  get_query_favorite_page: () => {
+    const getQueryCoins = document.querySelectorAll(".coin-name-favorite");
+    const arrFromCoins = Array.from(getQueryCoins);
+    arrFromCoins.forEach((coin) => {
+      coin.addEventListener("click", () => {
+        localStorage.setItem("selectedCoin", coin.dataset.id);
+        window.location = "detailedcoin.html";
+      });
+    });
+  },
+
   coins_contructor: (coins, container) => {
     const html_container = document.querySelector(`${container}`);
-    html_container.innerHTML = ""
+    html_container.innerHTML = "";
     coins.forEach((item) => {
       html_container.innerHTML += `
       <div class="coin" data-id=${item.id}>
                <div class="coin-name" >
                 <p><i class="fa-regular fa-star" data-id=${item.id}></i></p>
-                <p>${item.market_cap_rank}</p>
                 <img src="${item.image}" width=30px">
                 <p class="coin-name-clicable" data-id=${item.id}>${
         item.name
@@ -208,7 +210,6 @@ const app = {
           </div>
       `;
     });
-
   },
 
   addNewFavoriteItem: (data) => {
@@ -242,7 +243,7 @@ const app = {
   },
   loadFavorites: () => {
     console.log("Page 2 loaded");
-      
+
     const fetchFavorites = (selectedCoin) => {
       const url = `https://api.coingecko.com/api/v3/coins/${selectedCoin}
       `;
@@ -268,7 +269,9 @@ const app = {
                <p><i class="fa-solid fa-star" data-id=${coins.id}></i></p>
                <p>${coins.market_cap_rank}#</p>
                <p><img src="${coins.image.small}"></p>
-               <p class="coin-name-favorite"data-id=${coins.id}>${coins.name} </p> 
+               <p class="coin-name-favorite"data-id=${coins.id}>${
+        coins.name
+      } </p> 
                </div>
                <div class="coin-price"><p>${Intl.NumberFormat("en-US", {
                  style: "currency",
@@ -315,8 +318,7 @@ const app = {
     };
     setTimeout(() => {
       deleteFavorite();
-      app.get_query_favorite_page()
-
+      app.get_query_favorite_page();
     }, 1000);
 
     getSelectedFavorites();
@@ -325,9 +327,6 @@ const app = {
   getCoin: () => {
     const coins = document.querySelectorAll(".coin-name-clicable");
     const coinsArr = Array.from(coins);
-
-    console.log(coinsArr);
-
     coinsArr.forEach((coin) => {
       coin.addEventListener("click", () => {
         localStorage.setItem("selectedCoin", coin.dataset.id);
@@ -347,7 +346,6 @@ const app = {
 
     const createCoinContainer = (item) => {
       const html_container = document.querySelector(".left-row");
-
       html_container.innerHTML = `
    <div class="item">
           
@@ -445,7 +443,6 @@ const app = {
       changeColorsArr.forEach((item) => {
         if (item.innerHTML.includes("-") === true) {
           item.style.color = "red";
-    
         } else {
           item.style.color = "green";
         }
@@ -519,6 +516,3 @@ const app = {
   },
 };
 app.init();
-
-
-console.log(window.location.pathname)
