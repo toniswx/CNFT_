@@ -1,6 +1,7 @@
 .coins-selected {
 
   display: flex;
+  flex-direction: column;
   align-items: top;
   flex-wrap: wrap;
   justify-content: space-around;

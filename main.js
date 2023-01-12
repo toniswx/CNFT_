@@ -184,11 +184,14 @@ const app = {
       html_container.innerHTML += `
       <div class="coin" data-id=${item.id}>
                <div class="coin-name" >
-                <p><i class="fa-regular fa-star" data-id=${item.id}></i></p>
-                <img src="${item.image}" width=30px">
+               <p><i class="fa-regular fa-star" data-id=${item.id}></i></p>
+
+               <img src="${item.image}" width=30px">
+                
                 <p class="coin-name-clicable" data-id=${item.id}>${
         item.name
       }</p>  
+
                </div>
                <div class="coin-price"><p>${Intl.NumberFormat("en-US", {
                  style: "currency",

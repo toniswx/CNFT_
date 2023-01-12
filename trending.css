@@ -1,10 +1,11 @@
 .trending-container {
   padding-top: 15em;
   font-family: "Inter", sans-serif;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  overflow-x: auto;
 }
 .trending-body {
   display: flex;
@@ -20,77 +21,36 @@
   align-items: center;
   font-weight: bold;
 }
-
-.coin img {
-  padding-right: 1em;
-}
-.coin i{
-  outline: none;
-  font-size: 1.4rem;
-  padding-left: .4em;
-  padding-right: .4em;
-  color: rgb(0, 0, 0);
-  outline: none;
-  border-radius: 20px;
-}
-.coin i:hover{
-  color: rgb(255, 0, 0);
-}
-.coins-items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+.coins-items{
   width: 100%;
-  height: 70%;
-  margin-bottom: 2em;
-}
-.coin span {
-  font-size: 1.2rem;
-}
-.coin {
-  transition:  all .15s ease;
- padding: .2em;
   display: flex;
-  color: var(--main-color);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.coin{
+  border-bottom: 1px solid silver;
+  width:100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  width: 95%;
-  padding-inline: 30px;
-  border-bottom: 1px solid rgb(87, 86, 86);
-}
-.coin-selected-filled{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 2em;
-}
-
-.coin:hover{
-  background-color:aliceblue;
-}
-.coin p {
-  width: 40px;
-  font-size: 1rem;
-  padding-left: .5em;
-  cursor: pointer;
-
-}
-.coin img{
-  width: 30px;
-  height: auto;
-}
-.coin p:nth-child(2){
-  font-size: .9rem;
-  font-weight: 300;
-  color: rgb(0, 0, 0);
-}
-.coin div {
-  display: flex;
-  align-items: center;
   
 }
+.coin div{
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-grow: inherit;
+}
+
+.coin-name img{
+  padding-inline: 1em;
+}
+
+
+
+
 
 .coin-low {
   color: rgb(189, 15, 39);
@@ -109,10 +69,7 @@
   justify-content: space-around;
 }
 .fixed-container{
-  height: 4em;
-  top: 140px;
-  background-color: white;
-  position: fixed;
+
   
 }
 .fixed-container:hover{
@@ -215,62 +172,42 @@
 
 
 }
-@media only screen and (max-width: 1228px) {
-  .coin {
-    top: 160px;
-    overflow-x: scroll;
-    padding: 0;
-    width: 100%;
-    font-size: .4rem;
+@media only screen and (max-width: 882px){
+  .coin-low {
+    position: absolute;
+    left: -10000px;
+    color: rgb(189, 15, 39);
+  }
+  .coin-high {
+    position: absolute;
+    left: -10000px;
+    width: 0px;
+    
+  }
+  .trending-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+  }
+  .coin div:nth-child(2){
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    
+  
+  }
+  .coin div:nth-child(3){
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    
+  
   }
   .coin{
-    padding: 5px;
+    font-size: .5rem;
   }
-  .coin p{
-    width: 10%;
-    margin: 0;
-    padding: 0;
-    font-size: .1px;
-  }
-   
-  .coin-name p{
-    padding: 0;
-    padding-inline: 0;
-font-size: .7rem;
-  }
-  .coin-name{
-    width: 10%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .coins-items p{
-    padding: 0;
-    padding-inline: 0;
-    margin: .2em;
-font-size: .7rem;
-  
-  }
-  .coins-items i{
-    margin: 0;
-    padding: 0;
-font-size: .4rem;
-  
-  }
-  .coins-items img{
-    padding: 0;
-width: 20px;
-  
-  }
-  
-}
-@media only screen and (max-width: 582px) {
-   .coin{
-    overflow-x: scroll;
-   }
-  .coins-items p,i{
-    padding: 0;
-font-size: .6rem;
-  
+  .coin img{
+    width: 20%;
   }
 }
