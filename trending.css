@@ -42,12 +42,15 @@
   align-items: center;
   flex: 1;
   flex-grow: inherit;
+  cursor: pointer;
 }
 
 .coin-name img{
   padding-inline: 1em;
 }
-
+.coin:hover{
+  background-color: aliceblue;
+}
 
 
 
@@ -87,7 +90,7 @@
   flex-direction: column;
   position: fixed;
   right: 100px;
-  top: 140px;
+  top: 200px;
   font-family: "Inter", sans-serif;
 
 }
@@ -102,7 +105,7 @@
   padding: 12px;
   width: 100%;
   color: rgb(0, 0, 0);
-  animation: fadeIN 5s ;
+  animation: fadeIN 1.4s ;
   background-color: white;
   opacity: 0;
   
@@ -119,7 +122,7 @@
   padding: 12px;
   width: 100%;
   color: rgb(0, 0, 0);
-  animation: fadeIN 5s ;
+  animation: fadeIN 1.6s ease-in-out;
   background-color: white;
   opacity: 0;
 }
